@@ -20,6 +20,7 @@ CLEAN="$INPUT_CLEAN"
 FILE_FILTER="$INPUT_FILE_FILTER"
 FILTER="$INPUT_FILTER"
 EXCLUDE="$INPUT_EXCLUDE"
+INCLUDE="$INPUT_INCLUDE"
 SRC_WIKI="$INPUT_SRC_WIKI"
 DST_WIKI="$INPUT_DST_WIKI"
 USERNAME="$INPUT_USERNAME"
@@ -101,7 +102,7 @@ if [[ -n "$FILTER" ]]; then
         [ -e "$f" ] || continue
         [ -d "$f" ] && continue
         if [[ -n "$EXCLUDE" ]] ; then
-            [[ $f == $EXCLUDE ]] && continue
+            [[ $f == $EXCLUDE ]] && [[ $f != $INCLUDE ]] && continue
         fi
         file_dir=$(dirname "${f}")
         mkdir -p ${tmp_dir}/${SRC_REPO_NAME}/${file_dir} && cp ${f} ${tmp_dir}/${SRC_REPO_NAME}/${file_dir}

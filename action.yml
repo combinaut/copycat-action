@@ -41,6 +41,9 @@ inputs:
   exclude:
     description: 'A glob pattern for excluding paths'
     required: false
+  include:
+    description: 'A glob pattern for including paths'
+    required: false
   src_wiki:
     description: 'Set to true if the source repository you want to copy from is the GitHub Wiki'
     default: false
@@ -70,6 +73,7 @@ runs:
     - ${{ inputs.file_filter }}
     - ${{ inputs.filter }}
     - ${{ inputs.exclude }}
+    - ${{ inputs.include }}
     - ${{ inputs.src_wiki }}
     - ${{ inputs.dst_wiki }}
     - ${{ inputs.username }}
