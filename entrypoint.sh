@@ -129,19 +129,13 @@ mkdir -p ${DST_REPO_NAME}/${DST_PATH%/*} || exit "$?"
 cp -rf ${FINAL_SOURCE} ${DST_REPO_NAME}/${DST_PATH} || exit "$?"
 cd ${DST_REPO_NAME} || exit "$?"
 
-if [ -f "${BASE_PATH}/${FINAL_SOURCE}" ]; then
-    COMMIT_MESSAGE="Update file in \"${SRC_PATH}\" from \"${GITHUB_REPOSITORY}\""
-else
-    COMMIT_MESSAGE="Update file(s) \"${SRC_PATH}\" from \"${GITHUB_REPOSITORY}\""
-fi
-
 if [ -z "$(git status --porcelain)" ]; then
     # Working directory is clean
     echo "No changes detected "
 else
     # Uncommitted changes
     git add -A
-    git commit --message "${COMMIT_MESSAGE}"
+    git commit --message "Import updates from base app"
     git push origin ${DST_BRANCH}
 fi
 
